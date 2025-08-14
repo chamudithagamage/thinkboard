@@ -11,7 +11,7 @@ dotenv.config(); //configuring .env
 
 const PORT = process.env.PORT || 5001;
 
-
+//instead of directly using __dirname - in ESM we use below method to add path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
