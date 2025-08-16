@@ -19,11 +19,16 @@ connectDb();
 
 const app = express();
 
-//app.use("/api/notes", notesRoutes);
+//middleware- to use url encoded data
+app.use(express.json());
 
-app.get('/', (req,res) => {
-    res.sendFile(join(__dirname,'views','index.html'));
-})
+app.use("/api/notes", notesRoutes);
+
+//file sytems
+// app.get('/', (req,res) => {
+//     res.sendFile(join(__dirname,'views','index.html'));
+// })
+
 app.listen(PORT,() => {
     console.log(`Server is running on ${PORT}`);
 });
