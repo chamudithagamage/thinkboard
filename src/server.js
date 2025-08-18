@@ -5,6 +5,9 @@ import { dirname,join } from 'path';
 import { connectDb } from './config/db.js';
 import dotenv from 'dotenv';
 import { log } from 'console';
+import consoleInfo from './middleware/consoleInfo.js';
+import rateLimiter from './middleware/rateLimiter.js'
+
 
 dotenv.config(); //configuring .env 
 // console.log(process.env.MONGO_URI)
@@ -21,6 +24,12 @@ const app = express();
 
 //middleware- to use url encoded data
 app.use(express.json());
+
+//ratemiliter middleware
+app.use(rateLimiter);
+
+//Middleware to send info to the console(before the respond middleware runs)
+app.use(consoleInfo);
 
 app.use("/api/notes", notesRoutes);
 
