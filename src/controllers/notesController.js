@@ -1,6 +1,6 @@
 import Note from '../model/Note.js';
 
-export const getAllNotes = async (req,res) => {
+export const getAllNotes = async (_,res) => { //acn use _ to decommision unused req _parameter
     try{
         const notes = await Note.find().sort({createdAt:-1}); //gives every single note
         res.status(200).json(notes);
